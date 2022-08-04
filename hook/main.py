@@ -1,14 +1,13 @@
 import argparse
 import logging
 
-logging.basicConfig(level=logging.WARNING)
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(dest='migration_dirs',action="store", nargs='*')
     args = parser.parse_args()
     checklist = []
     filenames = []
-    logging.warning(args.migration_dirs )
+    print(args.migration_dirs )
     MIGRATION_DIR = filter(lambda dir: "migrations/" in dir, args.migration_dirs )
     for file in MIGRATION_DIR:
         arr = file.split("/")
@@ -17,12 +16,13 @@ def main():
     for filename in filenames:
         arr = filename.split("_")
         checklist.append(arr[0])
-    logging.warning(filenames)
+    print(filenames)
 
     if len(set(checklist)) == len(checklist):
-        logging.warning(checklist)
+        print(checklist)
+        raise ValueError("Duplicates In Migrations .")
     else:
-        logging.warninggit ("failed due to migrations")
+        print("failed due to migrations")
         raise ValueError("Duplicates In Migrations .")
     
 
