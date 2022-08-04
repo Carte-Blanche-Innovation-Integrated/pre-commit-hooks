@@ -1,0 +1,5 @@
+- id: migration-files-checker
+  name: Django migration files checker
+  entry: migrationfileschecker
+  language: python
+
