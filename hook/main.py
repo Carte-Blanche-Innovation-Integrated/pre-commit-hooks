@@ -7,22 +7,21 @@ def main():
     args = parser.parse_args()
     checklist = []
     filenames = []
-    print(args.migration_dirs )
-    MIGRATION_DIR = filter(lambda dir: "migrations/" in dir, args.migration_dirs )
+    MIGRATION_DIR = filter(lambda dir: "migrations/" in dir, args.migration_dirs)
     for file in MIGRATION_DIR:
         arr = file.split("/")
         filenames.append(arr[-1])
-
+    filenames.remove('__init__.py')
     for filename in filenames:
         arr = filename.split("_")
         checklist.append(arr[0])
-    print(filenames)
+
+    print("migration files:",filenames)
 
     if len(set(checklist)) == len(checklist):
         print(checklist)
-        raise ValueError("Duplicates In Migrations .")
     else:
-        print("failed due to migrations")
+        print(checklist)
         raise ValueError("Duplicates In Migrations .")
     
 
