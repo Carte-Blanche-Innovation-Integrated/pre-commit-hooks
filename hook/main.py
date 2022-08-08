@@ -11,7 +11,6 @@ def main():
     for file in MIGRATION_DIR:
         arr = file.split("/")
         filenames.append(arr[-1])
-    filenames.remove('__init__.py')
     for filename in filenames:
         arr = filename.split("_")
         checklist.append(arr[0])
